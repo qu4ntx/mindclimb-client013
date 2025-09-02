@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutometer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Tutometer</h1>
+    <p>Your Tutoring Sessions Overview</p>
+
+    <!-- Tab buttons -->
+    <div class="tab">
+      <button class="tablinks" onclick="openTab(event, 'Home')" id="defaultOpen">Home</button>
+      <button class="tablinks" onclick="openTab(event, 'Log')">Log</button>
+      <button class="tablinks" onclick="openTab(event, 'Tutees')">Tutees</button>
+      <button class="tablinks" onclick="openTab(event, 'Unpaid')">Unpaid</button>
+      <button class="tablinks" onclick="openTab(event, 'Link')">Link</button>
+    </div>
+
+    <!-- Tab content -->
+    <div id="Home" class="tabcontent">
+      <h2>Home</h2>
+      <div class="summary-item">
+        <p><strong>Sessions Completed:</strong> <span id="sessions-completed">0</span></p>
+      </div>
+      <div class="summary-item">
+        <p><strong>Sessions Paid:</strong> <span id="sessions-paid">0</span></p>
+      </div>
+      <div class="summary-item">
+        <p><strong>Sessions Unpaid:</strong> <span id="sessions-unpaid">0</span></p>
+      </div>
+      <div class="summary-item">
+        <p><strong>Total Balance:</strong> ₱<span id="total-balance">0</span></p>
+      </div>
+    </div>
+
+    <div id="Log" class="tabcontent">
+      <h2>Log</h2>
+      <ul id="history-list"></ul>
+    </div>
+
+    <div id="Tutees" class="tabcontent">
+      <h2>Tutees</h2>
+      <h3>JC</h3>
+      <ul id="topics-jc"></ul>
+      <h3>Julia</h3>
+      <ul id="topics-julia"></ul>
+    </div>
+
+    <div id="Unpaid" class="tabcontent">
+      <h2>Unpaid Summary</h2>
+      <div class="summary-item unpaid-total">
+        <p><strong>Total Unpaid Amount:</strong> ₱<span id="unpaid-total">0</span></p>
+      </div>
+      <ul id="unpaid-list"></ul>
+    </div>
+
+    <div id="Link" class="tabcontent">
+      <h2>Meeting Links</h2>
+      <button onclick="window.open('https://meet.google.com/tzd-yzga-dkm', '_blank')">Israel</button>
+      <button onclick="window.open('https://meet.google.com/dfs-gheo-gva', '_blank')">Apphia</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
