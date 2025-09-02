@@ -40,9 +40,11 @@ h3 {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  gap: 10px; /* spacing between buttons */
 }
 
 .tab button {
+  flex: 1; /* each button takes equal width */
   background-color: inherit;
   border: none;
   cursor: pointer;
@@ -50,8 +52,6 @@ h3 {
   transition: 0.3s;
   font-size: 15px;
   border-radius: 8px;
-  margin: 0 3px;
-  width: 70px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -59,6 +59,7 @@ h3 {
   background-color: #ccc;
   font-weight: bold;
 }
+
 
 .tabcontent {
   display: none;
