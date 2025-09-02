@@ -1,4 +1,5 @@
 const RATE = 650; // PHP per session
+let billingUnlocked = false; // track if parent has unlocked billing
 
 // Fetch CSV file
 async function fetchCSV(url) {
@@ -81,14 +82,14 @@ function updateTutees(topics) {
   });
 }
 
-// Update Unpaid tab
-function updateUnpaid(sessions) {
+// Update Billing tab
+function updateBilling(sessions) {
   const unpaidSessions = sessions.filter(s => s.status === "Unpaid");
   const unpaidTotal = unpaidSessions.reduce((sum, s) => sum + s.sessions * RATE, 0);
 
-  document.getElementById('unpaid-total').textContent = unpaidTotal.toLocaleString();
+  document.getElementById('billing-total').textContent = unpaidTotal.toLocaleString();
 
-  const list = document.getElementById('unpaid-list');
+  const list = document.getElementById('billing-list');
   list.innerHTML = '';
   unpaidSessions.forEach(s => {
     const li = document.createElement('li');
@@ -111,18 +112,39 @@ function openTab(evt, tabName) {
   }
 
   // password protection for Billing tab
-  if (tabName === "Billing") {
-    const pwd = prompt("Enter parent password:");
-    if (pwd !== "parentalaccess") {   // <-- change to your password
-      alert("Access denied");
-      return;
-    }
+  if (tabName === "Billing" && !billingUnlocked) {
+    document.getElementById("passwordModal").style.display = "block";
+    return; // stop until password is entered
   }
 
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
 }
 
+// Modal password check
+function checkPassword() {
+  const input = document.getElementById("passwordInput").value;
+  const error = document.getElementById("passwordError");
+
+  if (input === "parentalaccess") { // <-- set your password
+    billingUnlocked = true;
+    document.getElementById("passwordModal").style.display = "none";
+    document.getElementById("passwordInput").value = "";
+    error.textContent = "";
+
+    // open Billing tab after unlock
+    document.getElementById("Billing").style.display = "block";
+    document.querySelector("button[onclick*='Billing']").className += " active";
+  } else {
+    error.textContent = "Incorrect password. Please try again.";
+  }
+}
+
+function closeModal() {
+  document.getElementById("passwordModal").style.display = "none";
+  document.getElementById("passwordInput").value = "";
+  document.getElementById("passwordError").textContent = "";
+}
 
 // Main
 async function main() {
@@ -135,9 +157,8 @@ async function main() {
   updateHome(sessions);
   updateLog(sessions);
   updateTutees(topics);
-  updateUnpaid(sessions);
+  updateBilling(sessions);
 }
-
 
 main();
 document.getElementById("defaultOpen").click();
