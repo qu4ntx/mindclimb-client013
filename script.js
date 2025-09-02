@@ -116,17 +116,18 @@ function openTab(evt, tabName) {
 
 // Main
 async function main() {
-  const sessionsCSV = await fetchCSV('https://raw.githubusercontent.com/qu4ntx/tutometer/main/sessions.csv');
-  const topicsCSV = await fetchCSV('https://raw.githubusercontent.com/qu4ntx/tutometer/main/topics.csv');
+  const sessionsCSV = await fetchCSV('sessions.csv');
+  const topicsCSV   = await fetchCSV('topics.csv');
 
   const sessions = parseSessionsCSV(sessionsCSV);
-  const topics = parseTopicsCSV(topicsCSV);
+  const topics   = parseTopicsCSV(topicsCSV);
 
   updateHome(sessions);
   updateLog(sessions);
   updateTutees(topics);
   updateUnpaid(sessions);
 }
+
 
 main();
 document.getElementById("defaultOpen").click();
