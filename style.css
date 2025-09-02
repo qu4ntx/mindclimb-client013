@@ -191,6 +191,29 @@ h3 {
   transition: background-color 0.3s;
 }
 
+/* Payment methods card */
+.payment-card {
+  background-color: #f9fafc;
+  border: 1px solid #e0e6ed;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 15px;
+  text-align: left;
+  font-size: 0.9em;
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.payment-card p {
+  margin: 8px 0;
+  line-height: 1.4;
+}
+
+.payment-card strong {
+  color: #007bff;
+}
+
+
 .link-buttons button:hover {
   background-color: #0056b3;
 }
