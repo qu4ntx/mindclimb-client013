@@ -98,7 +98,7 @@ function checkPassword() {
   const input = document.getElementById("passwordInput").value;
   const error = document.getElementById("passwordError");
 
-  if (input === "parentalaccess") { // set password
+  if (input === "climb123") { // set password
     billingUnlocked = true;
     document.getElementById("passwordModal").style.display = "none";
     document.getElementById("passwordInput").value = "";
