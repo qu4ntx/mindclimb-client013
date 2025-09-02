@@ -13,44 +13,10 @@
 
     <!-- Tab buttons -->
     <div class="tab">
-      <button class="tablinks" onclick="openTab(event, 'Home')" id="defaultOpen">Home</button>
-      <button class="tablinks" onclick="openTab(event, 'Log')">Log</button>
+      <button class="tablinks" onclick="openTab(event, 'Tutor')" id="defaultOpen">Tutor</button>
       <button class="tablinks" onclick="openTab(event, 'Tutees')">Tutees</button>
+      <button class="tablinks" onclick="openTab(event, 'Log')">Log</button>
       <button class="tablinks" onclick="openTab(event, 'Billing')">Billing</button>
-      <button class="tablinks" onclick="openTab(event, 'Tutor')">Tutor</button>
-    </div>
-
-    <!-- Home -->
-    <div id="Home" class="tabcontent">
-      <h2>Home</h2>
-      <div class="summary-item"><p><strong>Sessions Completed:</strong> <span id="sessions-completed">0</span></p></div>
-      <div class="summary-item"><p><strong>Sessions Paid:</strong> <span id="sessions-paid">0</span></p></div>
-      <div class="summary-item"><p><strong>Sessions Unpaid:</strong> <span id="sessions-unpaid">0</span></p></div>
-      <div class="summary-item"><p><strong>Total Balance:</strong> ₱<span id="total-balance">0</span></p></div>
-    </div>
-
-    <!-- Log -->
-    <div id="Log" class="tabcontent">
-      <h2>Log</h2>
-      <div id="history-list"></div>
-    </div>
-
-    <!-- Tutees -->
-    <div id="Tutees" class="tabcontent">
-      <h2>Tutees</h2>
-      <h3>JC</h3>
-      <div id="topics-jc"></div>
-      <h3>Julia</h3>
-      <div id="topics-julia"></div>
-    </div>
-
-    <!-- Billing -->
-    <div id="Billing" class="tabcontent">
-      <h2>Billing Summary</h2>
-      <div class="summary-item unpaid-total">
-        <p><strong>Total Unpaid Amount:</strong> ₱<span id="billing-total">0</span></p>
-      </div>
-      <div id="billing-list"></div>
     </div>
 
     <!-- Tutor -->
@@ -69,6 +35,29 @@
       </div>
     </div>
 
+    <!-- Tutees -->
+    <div id="Tutees" class="tabcontent">
+      <h2>Tutees</h2>
+      <h3>JC</h3>
+      <div id="topics-jc"></div>
+      <h3>Julia</h3>
+      <div id="topics-julia"></div>
+    </div>
+
+    <!-- Log -->
+    <div id="Log" class="tabcontent">
+      <h2>Log</h2>
+      <div id="history-list"></div>
+    </div>
+
+    <!-- Billing -->
+    <div id="Billing" class="tabcontent">
+      <h2>Billing Summary</h2>
+      <div class="summary-item unpaid-total">
+        <p><strong>Total Unpaid Amount:</strong> ₱<span id="billing-total">0</span></p>
+      </div>
+      <div id="billing-list"></div>
+    </div>
   </div>
 
   <!-- Password Modal -->
