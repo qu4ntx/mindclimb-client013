@@ -1,14 +1,14 @@
 const RATE = 650; // PHP per session
-let billingUnlocked = false; // track if parent has unlocked billing
+let billingUnlocked = false;
 
-// Fetch CSV file
+// Fetch CSV
 async function fetchCSV(url) {
   try {
     const response = await fetch(url);
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     return await response.text();
   } catch (error) {
-    console.error('Error fetching the CSV file:', error);
+    console.error('Error fetching CSV:', error);
     return null;
   }
 }
@@ -16,24 +16,16 @@ async function fetchCSV(url) {
 // Parse sessions.csv
 function parseSessionsCSV(data) {
   if (!data) return [];
-
   const lines = data.trim().split('\n').slice(1);
   return lines.map(line => {
     const [date, time, tutee, sessions, status] = line.split(',');
-    return {
-      date,
-      time,
-      tutee,
-      sessions: parseFloat(sessions),
-      status: status.trim()
-    };
+    return { date, time, tutee, sessions: parseFloat(sessions), status: status.trim() };
   });
 }
 
 // Parse topics.csv
 function parseTopicsCSV(data) {
   if (!data) return [];
-
   const lines = data.trim().split('\n').slice(1);
   return lines.map(line => {
     const [date, tutee, topic] = line.split(',');
@@ -41,7 +33,7 @@ function parseTopicsCSV(data) {
   });
 }
 
-// Update Home tab
+// Update Home
 function updateHome(sessions) {
   const completed = sessions.reduce((sum, s) => sum + s.sessions, 0);
   const paid = sessions.filter(s => s.status === "Paid").reduce((sum, s) => sum + s.sessions, 0);
@@ -54,67 +46,60 @@ function updateHome(sessions) {
   document.getElementById('total-balance').textContent = unpaidTotal.toLocaleString();
 }
 
-// Update Log tab
+// Update Log
 function updateLog(sessions) {
   const list = document.getElementById('history-list');
   list.innerHTML = '';
-
   sessions.forEach(s => {
-    const li = document.createElement('li');
-    li.textContent = `${s.date} ${s.time} — ${s.tutee}, ${s.sessions} session(s) [${s.status}]`;
-    li.classList.add(s.status.toLowerCase());
-    list.appendChild(li);
+    const div = document.createElement('div');
+    div.classList.add('log-item', s.status.toLowerCase());
+    div.textContent = `${s.date} ${s.time} — ${s.tutee}: ${s.sessions} session(s), ${s.status}`;
+    list.appendChild(div);
   });
 }
 
-// Update Tutees tab
+// Update Tutees
 function updateTutees(topics) {
   const jcList = document.getElementById('topics-jc');
   const juliaList = document.getElementById('topics-julia');
   jcList.innerHTML = '';
   juliaList.innerHTML = '';
-
   topics.forEach(t => {
-    const li = document.createElement('li');
-    li.textContent = `${t.date}: ${t.topic}`;
-    if (t.tutee === "JC") jcList.appendChild(li);
-    else if (t.tutee === "Julia") juliaList.appendChild(li);
+    const div = document.createElement('div');
+    div.classList.add('topic-item');
+    div.textContent = `${t.date}: ${t.topic}`;
+    if (t.tutee === "JC") jcList.appendChild(div);
+    else if (t.tutee === "Julia") juliaList.appendChild(div);
   });
 }
 
-// Update Billing tab
+// Update Billing
 function updateBilling(sessions) {
   const unpaidSessions = sessions.filter(s => s.status === "Unpaid");
   const unpaidTotal = unpaidSessions.reduce((sum, s) => sum + s.sessions * RATE, 0);
 
   document.getElementById('billing-total').textContent = unpaidTotal.toLocaleString();
-
   const list = document.getElementById('billing-list');
   list.innerHTML = '';
   unpaidSessions.forEach(s => {
-    const li = document.createElement('li');
-    li.textContent = `${s.date} ${s.time} — ${s.tutee}, ${s.sessions} session(s) ₱${(s.sessions * RATE).toLocaleString()}`;
-    li.classList.add('unpaid');
-    list.appendChild(li);
+    const div = document.createElement('div');
+    div.classList.add('billing-item');
+    div.textContent = `${s.date} ${s.time} — ${s.tutee}: ${s.sessions} session(s), ₱${(s.sessions * RATE).toLocaleString()}`;
+    list.appendChild(div);
   });
 }
 
-// Tab functionality
+// Tab handling
 function openTab(evt, tabName) {
   const tabcontent = document.getElementsByClassName("tabcontent");
-  for (let i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
+  for (let i = 0; i < tabcontent.length; i++) tabcontent[i].style.display = "none";
 
   const tablinks = document.getElementsByClassName("tablinks");
-  for (let i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
+  for (let i = 0; i < tablinks.length; i++) tablinks[i].className = tablinks[i].className.replace(" active", "");
 
-  // password protection for Billing tab
   if (tabName === "Billing" && !billingUnlocked) {
     document.getElementById("passwordModal").style.display = "block";
-    return; // stop until password is entered
+    return;
   }
 
   document.getElementById(tabName).style.display = "block";
@@ -126,13 +111,11 @@ function checkPassword() {
   const input = document.getElementById("passwordInput").value;
   const error = document.getElementById("passwordError");
 
-  if (input === "parentalaccess") { // <-- set your password
+  if (input === "parentalaccess") { // set password
     billingUnlocked = true;
     document.getElementById("passwordModal").style.display = "none";
     document.getElementById("passwordInput").value = "";
     error.textContent = "";
-
-    // open Billing tab after unlock
     document.getElementById("Billing").style.display = "block";
     document.querySelector("button[onclick*='Billing']").className += " active";
   } else {
@@ -150,9 +133,8 @@ function closeModal() {
 async function main() {
   const sessionsCSV = await fetchCSV('sessions.csv');
   const topicsCSV   = await fetchCSV('topics.csv');
-
   const sessions = parseSessionsCSV(sessionsCSV);
-  const topics   = parseTopicsCSV(topicsCSV);
+  const topics = parseTopicsCSV(topicsCSV);
 
   updateHome(sessions);
   updateLog(sessions);
