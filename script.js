@@ -110,9 +110,19 @@ function openTab(evt, tabName) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
 
+  // password protection for Billing tab
+  if (tabName === "Billing") {
+    const pwd = prompt("Enter parent password:");
+    if (pwd !== "parentalaccess") {   // <-- change to your password
+      alert("Access denied");
+      return;
+    }
+  }
+
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
 
 // Main
 async function main() {
