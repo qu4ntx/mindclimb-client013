@@ -13,21 +13,29 @@
 
     <!-- Tab buttons -->
     <div class="tab">
-      <button class="tablinks" onclick="openTab(event, 'Home')" id="defaultOpen">Home</button>
+      <button class="tablinks" onclick="openTab(event, 'Tutor')" id="defaultOpen">Tutor</button>
       <button class="tablinks" onclick="openTab(event, 'Log')">Log</button>
       <button class="tablinks" onclick="openTab(event, 'Tutees')">Tutees</button>
       <button class="tablinks" onclick="openTab(event, 'Billing')">Billing</button>
-      <button class="tablinks" onclick="openTab(event, 'Tutor')">Tutor</button>
     </div>
 
-    <!-- Home -->
-    <div id="Home" class="tabcontent">
-      <h2>Home</h2>
-      <div class="summary-item"><p><strong>Sessions Completed:</strong> <span id="sessions-completed">0</span></p></div>
-      <div class="summary-item"><p><strong>Sessions Paid:</strong> <span id="sessions-paid">0</span></p></div>
-      <div class="summary-item"><p><strong>Sessions Unpaid:</strong> <span id="sessions-unpaid">0</span></p></div>
-      <div class="summary-item"><p><strong>Total Balance:</strong> ₱<span id="total-balance">0</span></p></div>
+
+    <!-- Tutor -->
+    <div id="Tutor" class="tabcontent">
+      <h2>Your Tutor</h2>
+      <img src="photototo.png" alt="Tutor Photo" class="tutor-photo">
+      <p class="tutor-intro">
+        Israel is a double major in Aerospace and Electrical Engineering at KAIST,
+        with research in missile interception and autonomous drone systems. With four 
+        years of tutoring experience, he excels at making complex STEM topics clear and practical.
+      </p>
+      <h3>Meeting Links</h3>
+      <div class="link-buttons">
+        <button onclick="window.open('https://meet.google.com/tzd-yzga-dkm', '_blank')">Israel</button>
+        <button onclick="window.open('https://meet.google.com/dfs-gheo-gva', '_blank')">Apphia</button>
+      </div>
     </div>
+    
 
     <!-- Log -->
     <div id="Log" class="tabcontent">
@@ -51,22 +59,6 @@
         <p><strong>Total Unpaid Amount:</strong> ₱<span id="billing-total">0</span></p>
       </div>
       <div id="billing-list"></div>
-    </div>
-
-    <!-- Tutor -->
-    <div id="Tutor" class="tabcontent">
-      <h2>Your Tutor</h2>
-      <img src="photototo.png" alt="Tutor Photo" class="tutor-photo">
-      <p class="tutor-intro">
-        Israel is a double major in Aerospace and Electrical Engineering at KAIST,
-        with research in missile interception and autonomous drone systems. With four 
-        years of tutoring experience, he excels at making complex STEM topics clear and practical.
-      </p>
-      <h3>Meeting Links</h3>
-      <div class="link-buttons">
-        <button onclick="window.open('https://meet.google.com/tzd-yzga-dkm', '_blank')">Israel</button>
-        <button onclick="window.open('https://meet.google.com/dfs-gheo-gva', '_blank')">Apphia</button>
-      </div>
     </div>
 
   </div>
