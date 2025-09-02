@@ -65,5 +65,19 @@
   </div>
 
   <script src="script.js"></script>
+  <!-- Password Modal -->
+<div id="passwordModal" class="modal">
+  <div class="modal-content">
+    <h2>Parent Access</h2>
+    <p>Please enter the password to view Billing:</p>
+    <input type="password" id="passwordInput" placeholder="Enter password">
+    <div class="modal-buttons">
+      <button onclick="checkPassword()">Submit</button>
+      <button onclick="closeModal()">Cancel</button>
+    </div>
+    <p id="passwordError" class="error-message"></p>
+  </div>
+</div>
+
 </body>
 </html>
