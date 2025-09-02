@@ -97,3 +97,28 @@ p {
 .unpaid {
   border-left: 5px solid #e74c3c;
 }
+
+#Link button {
+  background-color: #007bff;   /* bootstrap blue */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  margin: 10px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  width: 120px;                /* equal width */
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+#Link button:hover {
+  background-color: #0056b3;   /* darker blue */
+  transform: translateY(-2px); /* small lift effect */
+}
+
+#Link button:active {
+  background-color: #004494;   /* pressed state */
+  transform: translateY(0);
+}
+
