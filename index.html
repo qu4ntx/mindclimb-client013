@@ -20,65 +20,61 @@
       <button class="tablinks" onclick="openTab(event, 'Link')">Link</button>
     </div>
 
-    <!-- Tab content -->
+    <!-- Home -->
     <div id="Home" class="tabcontent">
       <h2>Home</h2>
-      <div class="summary-item">
-        <p><strong>Sessions Completed:</strong> <span id="sessions-completed">0</span></p>
-      </div>
-      <div class="summary-item">
-        <p><strong>Sessions Paid:</strong> <span id="sessions-paid">0</span></p>
-      </div>
-      <div class="summary-item">
-        <p><strong>Sessions Unpaid:</strong> <span id="sessions-unpaid">0</span></p>
-      </div>
-      <div class="summary-item">
-        <p><strong>Total Balance:</strong> ₱<span id="total-balance">0</span></p>
-      </div>
+      <div class="summary-item"><p><strong>Sessions Completed:</strong> <span id="sessions-completed">0</span></p></div>
+      <div class="summary-item"><p><strong>Sessions Paid:</strong> <span id="sessions-paid">0</span></p></div>
+      <div class="summary-item"><p><strong>Sessions Unpaid:</strong> <span id="sessions-unpaid">0</span></p></div>
+      <div class="summary-item"><p><strong>Total Balance:</strong> ₱<span id="total-balance">0</span></p></div>
     </div>
 
+    <!-- Log -->
     <div id="Log" class="tabcontent">
       <h2>Log</h2>
-      <ul id="history-list"></ul>
+      <div id="history-list"></div>
     </div>
 
+    <!-- Tutees -->
     <div id="Tutees" class="tabcontent">
       <h2>Tutees</h2>
       <h3>JC</h3>
-      <ul id="topics-jc"></ul>
+      <div id="topics-jc"></div>
       <h3>Julia</h3>
-      <ul id="topics-julia"></ul>
+      <div id="topics-julia"></div>
     </div>
 
+    <!-- Billing -->
     <div id="Billing" class="tabcontent">
       <h2>Billing Summary</h2>
       <div class="summary-item unpaid-total">
         <p><strong>Total Unpaid Amount:</strong> ₱<span id="billing-total">0</span></p>
       </div>
-      <ul id="billing-list"></ul>
+      <div id="billing-list"></div>
     </div>
 
-
+    <!-- Links -->
     <div id="Link" class="tabcontent">
       <h2>Meeting Links</h2>
       <button onclick="window.open('https://meet.google.com/tzd-yzga-dkm', '_blank')">Israel</button>
+      <button onclick="window.open('https://meet.google.com/dfs-gheo-gva', '_blank')">Apphia</button>
+    </div>
+  </div>
+
+  <!-- Password Modal -->
+  <div id="passwordModal" class="modal">
+    <div class="modal-content">
+      <h2>Parent Access</h2>
+      <p>Please enter the password to view Billing:</p>
+      <input type="password" id="passwordInput" placeholder="Enter password">
+      <div class="modal-buttons">
+        <button onclick="checkPassword()">Submit</button>
+        <button onclick="closeModal()">Cancel</button>
+      </div>
+      <p id="passwordError" class="error-message"></p>
     </div>
   </div>
 
   <script src="script.js"></script>
-  <!-- Password Modal -->
-<div id="passwordModal" class="modal">
-  <div class="modal-content">
-    <h2>Parent Access</h2>
-    <p>Please enter the password to view Billing:</p>
-    <input type="password" id="passwordInput" placeholder="Enter password">
-    <div class="modal-buttons">
-      <button onclick="checkPassword()">Submit</button>
-      <button onclick="closeModal()">Cancel</button>
-    </div>
-    <p id="passwordError" class="error-message"></p>
-  </div>
-</div>
-
 </body>
 </html>
