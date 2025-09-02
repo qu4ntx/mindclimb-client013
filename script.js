@@ -33,19 +33,6 @@ function parseTopicsCSV(data) {
   });
 }
 
-// Update Home
-function updateHome(sessions) {
-  const completed = sessions.reduce((sum, s) => sum + s.sessions, 0);
-  const paid = sessions.filter(s => s.status === "Paid").reduce((sum, s) => sum + s.sessions, 0);
-  const unpaid = sessions.filter(s => s.status === "Unpaid").reduce((sum, s) => sum + s.sessions, 0);
-  const unpaidTotal = unpaid * RATE;
-
-  document.getElementById('sessions-completed').textContent = completed.toFixed(1);
-  document.getElementById('sessions-paid').textContent = paid.toFixed(1);
-  document.getElementById('sessions-unpaid').textContent = unpaid.toFixed(1);
-  document.getElementById('total-balance').textContent = unpaidTotal.toLocaleString();
-}
-
 // Update Log
 function updateLog(sessions) {
   const list = document.getElementById('history-list');
@@ -53,7 +40,7 @@ function updateLog(sessions) {
   sessions.forEach(s => {
     const div = document.createElement('div');
     div.classList.add('log-item', s.status.toLowerCase());
-    div.textContent = `${s.date} ${s.time} — ${s.tutee}: ${s.sessions} session(s), ${s.status}`;
+    div.textContent = `${s.date} ${s.time} — ${s.tutee}: ${s.sessions} session(s) • ${s.status}`;
     list.appendChild(div);
   });
 }
@@ -84,7 +71,7 @@ function updateBilling(sessions) {
   unpaidSessions.forEach(s => {
     const div = document.createElement('div');
     div.classList.add('billing-item');
-    div.textContent = `${s.date} ${s.time} — ${s.tutee}: ${s.sessions} session(s), ₱${(s.sessions * RATE).toLocaleString()}`;
+    div.textContent = `${s.date} ${s.time} — ${s.tutee}: ${s.sessions} session(s) • ₱${(s.sessions * RATE).toLocaleString()}`;
     list.appendChild(div);
   });
 }
@@ -136,7 +123,6 @@ async function main() {
   const sessions = parseSessionsCSV(sessionsCSV);
   const topics = parseTopicsCSV(topicsCSV);
 
-  updateHome(sessions);
   updateLog(sessions);
   updateTutees(topics);
   updateBilling(sessions);
