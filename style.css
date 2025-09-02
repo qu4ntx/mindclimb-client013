@@ -173,23 +173,30 @@ h3 {
 }
 
 /* Meeting links inside Tutor */
+/* Single big meeting link button */
 .link-buttons {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .link-buttons button {
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
+  padding: 14px 40px;   /* bigger padding */
+  border-radius: 8px;
   font-weight: bold;
+  font-size: 1.1em;     /* larger text */
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
 }
+
+.link-buttons button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
 
 /* Payment methods card */
 .payment-card {
@@ -211,9 +218,4 @@ h3 {
 
 .payment-card strong {
   color: #007bff;
-}
-
-
-.link-buttons button:hover {
-  background-color: #0056b3;
 }
