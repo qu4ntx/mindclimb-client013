@@ -46,7 +46,7 @@ function updateLog(sessions) {
   sessions.forEach(s => {
     const div = document.createElement('div');
     div.classList.add('log-item', s.status);
-    div.textContent = `${s.date} ${s.time} — ${s.tutee}: ${s.sessions} session(s) • ${s.status}`;
+    div.textContent = `${s.date} ${s.time} — ${s.tutee}: ${s.sessions} session(s)`;
     list.appendChild(div);
   });
 }
