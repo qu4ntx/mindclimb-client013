@@ -219,3 +219,30 @@ h3 {
 .payment-card strong {
   color: #007bff;
 }
+
+/* receipt-like formatting */
+.log-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+}
+
+.log-date {
+  font-weight: bold;
+  color: #333;
+}
+
+.log-time {
+  font-style: italic;
+  color: #555;
+}
+
+.log-tutee {
+  color: #444;
+}
+
+.log-sessions {
+  font-weight: bold;
+  color: #222;
+}
+
