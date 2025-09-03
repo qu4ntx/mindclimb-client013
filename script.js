@@ -19,7 +19,13 @@ function parseSessionsCSV(data) {
   const lines = data.trim().split('\n').slice(1);
   return lines.map(line => {
     const [date, time, tutee, sessions, status] = line.split(',');
-    return { date, time, tutee, sessions: parseFloat(sessions), status: status.trim() };
+    return { 
+      date, 
+      time, 
+      tutee, 
+      sessions: parseFloat(sessions), 
+      status: status ? status.trim().toLowerCase() : "" // normalize here
+    };
   });
 }
 
@@ -39,7 +45,7 @@ function updateLog(sessions) {
   list.innerHTML = '';
   sessions.forEach(s => {
     const div = document.createElement('div');
-    div.classList.add('log-item', s.status.toLowerCase());
+    div.classList.add('log-item', s.status);
     div.textContent = `${s.date} ${s.time} — ${s.tutee}: ${s.sessions} session(s) • ${s.status}`;
     list.appendChild(div);
   });
@@ -62,15 +68,16 @@ function updateTutees(topics) {
 
 // Update Billing
 function updateBilling(sessions) {
-  const unpaidSessions = sessions.filter(s => s.status === "Unpaid");
+  const unpaidSessions = sessions.filter(s => s.status === "unpaid"); // lowercase check
   const unpaidTotal = unpaidSessions.reduce((sum, s) => sum + s.sessions * RATE, 0);
 
   document.getElementById('billing-total').textContent = unpaidTotal.toLocaleString();
+
   const list = document.getElementById('billing-list');
   list.innerHTML = '';
   unpaidSessions.forEach(s => {
     const div = document.createElement('div');
-    div.classList.add('billing-item');
+    div.classList.add('billing-item', 'unpaid');
     div.textContent = `${s.date} ${s.time} — ${s.tutee}: ${s.sessions} session(s) • ₱${(s.sessions * RATE).toLocaleString()}`;
     list.appendChild(div);
   });
