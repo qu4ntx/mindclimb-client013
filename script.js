@@ -78,20 +78,48 @@ function updateLog(sessions) {
 }
 
 
+// Course code → description mapping
+const courseDescriptions = {
+  "PHY100": "general physics",
+  "PHY101": "mechanics",
+  "PHY102": "electromagnetics",
+  "MAS101": "calculus",
+  "MAS102": "multivariable calculus",
+  "MAS109": "linear algebra",
+  "MAS201": "differential equations"
+};
+
 // Update Tutees
 function updateTutees(topics) {
   const jcList = document.getElementById('topics-jc');
   const juliaList = document.getElementById('topics-julia');
   jcList.innerHTML = '';
   juliaList.innerHTML = '';
+
   topics.forEach(t => {
+    // Extract course code in parentheses
+    const match = t.topic.match(/\((.*?)\)/);
+    let courseCode = match ? match[1] : "";
+    let description = courseDescriptions[courseCode] || "";
+
+    // Create container
     const div = document.createElement('div');
     div.classList.add('topic-item');
-    div.textContent = `${t.date}: ${t.topic}`;
+
+    // Format
+    div.innerHTML = `
+      <div class="topic-date">${t.date}</div>
+      <div class="topic-row">
+        <span class="topic-main">${t.topic}</span>
+        <span class="topic-desc">${description}</span>
+      </div>
+    `;
+
     if (t.tutee === "JC") jcList.appendChild(div);
     else if (t.tutee === "Julia") juliaList.appendChild(div);
   });
 }
+
 
 // Update Billing
 function updateBilling(sessions) {
