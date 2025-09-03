@@ -39,17 +39,44 @@ function parseTopicsCSV(data) {
   });
 }
 
-// Update Log
+// helper: add minutes to "HH:MM"
+function addMinutes(time, minsToAdd) {
+  let [hours, minutes] = time.split(':').map(Number);
+  let totalMinutes = hours * 60 + minutes + minsToAdd;
+
+  let newHours = Math.floor(totalMinutes / 60) % 24; // wrap around midnight
+  let newMinutes = totalMinutes % 60;
+
+  return `${String(newHours).padStart(2, '0')}:${String(newMinutes).padStart(2, '0')}`;
+}
+
+// Update Log with receipt-style formatting
 function updateLog(sessions) {
   const list = document.getElementById('history-list');
   list.innerHTML = '';
+
   sessions.forEach(s => {
+    const durationMins = s.sessions * 90; // each session = 90 min
+    const endTime = addMinutes(s.time, durationMins);
+
     const div = document.createElement('div');
     div.classList.add('log-item', s.status);
-    div.textContent = `${s.date} ${s.time} — ${s.tutee}: ${s.sessions} session(s)`;
+
+    div.innerHTML = `
+      <div class="log-line">
+        <span class="log-date">${s.date}</span>
+        <span class="log-time">${s.time}–${endTime}</span>
+      </div>
+      <div class="log-line">
+        <span class="log-tutee">${s.tutee}</span>
+        <span class="log-sessions">${s.sessions} session(s)</span>
+      </div>
+    `;
+
     list.appendChild(div);
   });
 }
+
 
 // Update Tutees
 function updateTutees(topics) {
