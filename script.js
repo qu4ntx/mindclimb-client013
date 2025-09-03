@@ -97,10 +97,10 @@ function updateTutees(topics) {
   juliaList.innerHTML = '';
 
   topics.forEach(t => {
-    // Extract course code in parentheses
-    const match = t.topic.match(/\((.*?)\)/);
-    let courseCode = match ? match[1] : "";
-    let description = courseDescriptions[courseCode] || "";
+    // extract course code before colon
+    const parts = t.topic.split(":");
+    const courseCode = parts[0].trim();
+    const description = courseDescriptions[courseCode] || "";
 
     // Create container
     const div = document.createElement('div');
@@ -119,6 +119,7 @@ function updateTutees(topics) {
     else if (t.tutee === "Julia") juliaList.appendChild(div);
   });
 }
+
 
 
 // Update Billing
