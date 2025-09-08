@@ -179,6 +179,19 @@ function closeModal() {
   document.getElementById("passwordError").textContent = "";
 }
 
+// Sub-tab handling for Tutees
+function openSubTab(evt, subTabName) {
+  const subtabcontent = document.getElementsByClassName("subtabcontent");
+  for (let i = 0; i < subtabcontent.length; i++) subtabcontent[i].style.display = "none";
+
+  const subtablinks = document.getElementsByClassName("subtablinks");
+  for (let i = 0; i < subtablinks.length; i++) subtablinks[i].className = subtablinks[i].className.replace(" active", "");
+
+  document.getElementById(subTabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+
 // Main
 async function main() {
   const sessionsCSV = await fetchCSV('sessions.csv');
