@@ -44,11 +44,24 @@
     <!-- Tutees -->
     <div id="Tutees" class="tabcontent">
       <h2>Tutees</h2>
-      <h3>JC</h3>
-      <div id="topics-jc"></div>
-      <h3>Julia</h3>
-      <div id="topics-julia"></div>
+      
+      <!-- Sub-tab buttons -->
+      <div class="subtab">
+        <button class="subtablinks active" onclick="openSubTab(event, 'JC')">JC</button>
+        <button class="subtablinks" onclick="openSubTab(event, 'Julia')">Julia</button>
+      </div>
+    
+      <!-- JC topics -->
+      <div id="JC" class="subtabcontent">
+        <div id="topics-jc"></div>
+      </div>
+    
+      <!-- Julia topics -->
+      <div id="Julia" class="subtabcontent" style="display:none;">
+        <div id="topics-julia"></div>
+      </div>
     </div>
+
 
     <!-- Log -->
     <div id="Log" class="tabcontent">
