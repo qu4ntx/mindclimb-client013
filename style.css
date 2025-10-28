@@ -16,6 +16,12 @@ body {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   width: 380px;
   text-align: center;
+
+  /* NEW */
+  display: flex;
+  flex-direction: column;
+  max-height: 92vh;       /* keep the whole card on screen */
+  overflow: hidden;       /* prevent the outer card from scrolling */
 }
 
 h1 {
@@ -41,6 +47,13 @@ h3 {
   justify-content: space-between;
   margin-bottom: 20px;
   gap: 10px; /* spacing between buttons */
+
+  /* optional: keep the tab row stuck to the top of the card if content is tall */
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 2;
+  padding-bottom: 4px;
 }
 
 .tab button {
@@ -63,7 +76,23 @@ h3 {
 
 .tabcontent {
   display: none;
+  flex: 1;            /* take remaining height in the card */
+  overflow: auto;     /* <-- inner scrollbar lives here */
+  padding-right: 4px; /* room for scrollbar so text doesn't hug it */
 }
+
+/* (Optional) nicer, thin scrollbar on WebKit browsers */
+.tabcontent::-webkit-scrollbar {
+  width: 8px;
+}
+.tabcontent::-webkit-scrollbar-track {
+  background: transparent;
+}
+.tabcontent::-webkit-scrollbar-thumb {
+  background: #d6dbe3;
+  border-radius: 8px;
+}
+
 
 .summary-item {
   background-color: #eef2f7;
@@ -286,6 +315,12 @@ h3 {
   justify-content: center;
   margin-bottom: 15px;
   gap: 10px;
+
+  position: sticky;
+  top: 42px;    /* sits just under the main tab row */
+  background: #fff;
+  z-index: 1;
+  padding: 6px 0 4px;
 }
 
 .subtab button {
@@ -307,5 +342,10 @@ h3 {
 
 .subtabcontent {
   display: none;
+}
+
+/* (Optional) make the card a bit wider on small screens so scrollbar feels better */
+@media (max-width: 480px) {
+  .container { width: 95vw; }
 }
 
