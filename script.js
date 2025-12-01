@@ -56,8 +56,8 @@ function updateLog(sessions) {
   list.innerHTML = '';
 
   sessions.forEach(s => {
-    const durationMins = s.sessions * 90; // each session = 90 min
-    const endTime = parseInt(addMinutes(s.time, durationMins));
+    const durationMins = parseInt(s.sessions * 90); // each session = 90 min
+    const endTime = addMinutes(s.time, durationMins);
 
     const div = document.createElement('div');
     div.classList.add('log-item', s.status);
